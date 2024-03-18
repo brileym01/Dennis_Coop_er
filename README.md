@@ -1,6 +1,10 @@
 # Dennis_Coop_er
 Group Project to build an IOT chicken coop ( smart coop )
 
+COOP ID:
+
+{"CoopID":"RWGJ5DX7"}
+
 The APIs available for this application are designed in a RESTful way.  To interact with the API, you must provide the requested information with the correct HTTP method.
 
 The directory that houses the APIs is https://simplecoop.swollenhippo.com/
