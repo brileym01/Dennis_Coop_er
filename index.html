@@ -138,6 +138,9 @@
             let strCoopID = $('#txtCoopID').val();
             let strEmail = $('#txtEmail').val();
             let strPassword = $('#txtPassword').val();
+            let strAddress1 = $('#txtStreetAddress1').val();
+            let strCity = $('#txtCity').val();
+            let strZipCode = $('#txtZipCode').val();
                         // setup a test to check values
             let blnError = false;
             let strError = '';
@@ -167,6 +170,21 @@
                                         text: "You Must Enter Your Password",
                                         icon: "error"});
             }
+            if(strAddress1 == ''){
+                strError += Swal.fire({title: "Required", 
+                                        text: "You Must Enter Your Address",
+                                        icon: "error"});
+            }
+            if(strCity == ''){
+                strError += Swal.fire({title: "Required", 
+                                        text: "You Must Enter Your City",
+                                        icon: "error"});
+            }
+            if(strZipCode == ''){
+                strError += Swal.fire({title: "Required", 
+                                        text: "You Must Enter Your Zip Code",
+                                        icon: "error"});
+            }
 
             if(blnError == true){
                 alert(strError);
@@ -174,12 +192,28 @@
                 console.log(strFirstName);
                 console.log(strLastName);
                 console.log(strEmail);
+                console.log(strCoopID);
+                $.post("https://www.swollenhippo.com/users.php", {FirstName:strFirstName,LastName:strLastName,Email:strEmail,CoopID:strCoopID,Password:strPassword,StreetAddress1:strAddress1,City:strCity,ZipCode:strZipCode}, function(result){
+                    result = JSON.parse(result);
+                    if(result.Error){
+                        Swal.fire({
+                            icon:'error',
+                            title:'Oh no, something went wrong',
+                            text: result.Error
+                        })
+                    } else {
+                        sessionStorage.setItem('TimeClockID',result.SessionID);
+                        $('#divRegister').slideToggle(function(){
+                            $('#divView').slideToggle();
+                        })
+                    }
+                })
             }
             
             
         })
         $('#btnLogin').on('click',function(){
-            $.post('https://www.thesimplehomestead.com/simpletime/sessions.php',{Email:$('#txtLoginEmail').val(),Password:$('#txtLoginPassword').val()},function(result){
+            $.post('https://simplecoop.swollenhippo.com/users.php',{Email:$('#txtLoginEmail').val(),Password:$('#txtLoginPassword').val()},function(result){
                 result = JSON.parse(result);
                 if(result.Error){
                     Swal.fire({
@@ -197,7 +231,7 @@
         })
         $('#btnLogout').on('click',function(){
             $.ajax({
-                url: 'https://www.thesimplehomestead.com/simpletime/sessions.php',
+                url: 'https://simplecoop.swollenhippo.com/',
                 type: 'REDACTED',
                 data: {SessionID:'REFERENCE THE VALUE HERE FROM SESSION STORAGE'},
                 success: function(result) {
