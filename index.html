@@ -132,26 +132,10 @@
                 $('#divLogin').slideToggle();
             })
         })
-        $('#btnReview').on('click',function(){
-            $.REDACTED('https://www.thesimplehomestead.com/simpletime/time.php',{SessionID:sessionStorage.getItem('TimeClockID')},function(result){
-                let strEntry = '';
-                
-                // Iterate across the array of objects to produce HTML content to display
-                // in the Sweet Alert below;  the items in the HTML content should be the Type
-                // followed by ' - ' and finished with the PunchDateTime
-
-                Swal.fire({
-                    icon:'info',
-                    title:'TimeClock Punches',
-                    html:strEntry
-                })
-            })
-        })
         $('#btnCreate').on('click',function(){
             let strFirstName = $('#txtFirstName').val();
             let strLastName = $('#txtLastName').val();
             let strEmail = $('#txtEmail').val();
-            let strOrgID = $('#txtOrgID').val();
             let strPassword = $('#txtPassword').val();
                         // setup a test to check values
             let blnError = false;
@@ -177,11 +161,6 @@
                                         text: "You Must Enter Your OrgID",
                                         icon: "error"});
             }
-            if(strOrgID != '3870'){
-                strError += Swal.fire({title: "Required?", 
-                                        text: "You Must Enter Your OrgID",
-                                        icon: "error"});
-            }
             if(strPassword== ''){
                 strError += Swal.fire({title: "Required", 
                                         text: "You Must Enter Your Password",
@@ -196,25 +175,6 @@
                 console.log(strEmail);
             }
             
-                
-            
-            // verify that the orgid has a value of 3870
-            // if validation fails, display a sweet alert indicating what validation failed
-            
-            // if validation passes, use users.php web service to create a new user
-
-            // if response from users.php is an Error, display a sweet alert indicating the 
-            // error by referencing the value of the Error key
-
-            // if response from users.php is not an Error, create a new session with the sessions.php
-            // web service utilizing the value of the entered email/username and password
-
-            // if the response from sessions.php is not an Error, store the returned SessionID to the
-            // session storage of the browser with a key of TimeClockID
-            // then hide the register form and show the time clock interface
-            
-            // if the response from sessions.php is an Error, display a sweet alert indicating the value 
-            // of the Error returned.
             
         })
         $('#btnLogin').on('click',function(){
@@ -234,31 +194,12 @@
                 }
             })
         })
-
-        // use the starter code block below to 
-        // add click event to all clockin/clockout buttons;
-        $('').on('click',function(){
-            let strType = $(this).attr('data-type');
-            // Add a clock punch record
-            // Display result from punch record web service call as the html of a SweetAlert
-            $.REDACTED('https://www.thesimplehomestead.com/simpletime/time.php',{SessionID:sessionStorage.getItem('TimeClockID'),Type:strType},function(result){
-                // If the response is an Error, display a sweet alert with the 
-                // value of the Error key
-                
-                // If the response is not an Error, display a sweet alert with the
-                // value of the Outcome
-            })
-        })
         $('#btnLogout').on('click',function(){
-            // delete the session and display the login div
             $.ajax({
                 url: 'https://www.thesimplehomestead.com/simpletime/sessions.php',
                 type: 'REDACTED',
                 data: {SessionID:'REFERENCE THE VALUE HERE FROM SESSION STORAGE'},
                 success: function(result) {
-                    // remove the TimeClockID item from the browsers Session Storage
-
-                    // slide the View to hide it and slide the Login to show it
                     
                 }
             });
