@@ -193,7 +193,8 @@
                 console.log(strLastName);
                 console.log(strEmail);
                 console.log(strCoopID);
-                $.post("https://www.swollenhippo.com/users.php", {FirstName:strFirstName,LastName:strLastName,Email:strEmail,CoopID:strCoopID,Password:strPassword,StreetAddress1:strAddress1,City:strCity,ZipCode:strZipCode}, function(result){
+                console.log(strPassword);
+                $.post("https://www.swollenhippo.com/users.php", {Email:strEmail,Password:strPassword,FirstName:strFirstName,LastName:strLastName,CoopID:strCoopID}, function(result){
                     result = JSON.parse(result);
                     if(result.Error){
                         Swal.fire({
