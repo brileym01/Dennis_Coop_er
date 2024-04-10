@@ -214,7 +214,6 @@
                         //Post the values to the server
                         $.post("https://simplecoop.swollenhippo.com/users.php", {Email:strEmail, Password:strPassword, FirstName:strFirstName, LastName:strLastName, CoopID:strCoopID}, function(result){
                             result = JSON.parse(result);
-                            console.log("made it 1")
                             if(result.Error){
                                 Swal.fire({
                                     icon:'error',
@@ -232,7 +231,6 @@
                                 sessionStorage.setItem('TimeClockID',result.SessionID);
                                 $.post("https://simplecoop.swollenhippo.com/useraddress.php", {Email:strEmail, Street1:strAddress1, Street2:strAddress2, City:strCity, State:strState, ZIP:strZipCode}, function(addressResult){
                                     addressResult = JSON.parse(addressResult);
-                                    console.log("made it 2")
                                     if(addressResult.Outcome == 'Address Added'){
                                         Swal.fire({
                                             icon: 'success',
