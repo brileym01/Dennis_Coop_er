@@ -197,7 +197,9 @@
                     }
 
                     if(blnError == false){
-                        alert(strError);
+                        Swal.fire({title: "Required", 
+                            text: "Registration Failed",
+                            icon: "error"});
                     } else {
                         //Evaluating that the values are being passed correctly
                         console.log(strFirstName);
