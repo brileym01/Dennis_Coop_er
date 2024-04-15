@@ -3,7 +3,7 @@ Group Project to build an IOT chicken coop ( smart coop )
 
 COOP ID:
 
-{"CoopID":"RWGJ5DX7"}
+{"CoopID":"WI97NJ21"}
 
 The APIs available for this application are designed in a RESTful way.  To interact with the API, you must provide the requested information with the correct HTTP method.
 
