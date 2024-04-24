@@ -145,12 +145,6 @@
                 $('#divLogin').slideToggle();
             })
         })
-        $('#btnLogin').on('click', function(){
-            console.log('Login Clicked');
-            $('#divLogin').slideToggle(function(){
-                $('#divDashboard').slideToggle();
-            })
-        })
         $('#btnCreate').on('click',function(){
                     // setup variables to hold the values of the input fields
                     console.log('Create Clicked');
@@ -296,7 +290,12 @@
                                 text: result.Error
                             })
                         } else {
-                            console.log("divDashboard Swap Clicked");
+                            $('#btnLogin').on('click', function(){
+                                console.log('Login Clicked');
+                                $('#divLogin').slideToggle(function(){
+                                    $('#divDashboard').slideToggle();
+                                })
+                            })
                             sessionStorage.setItem('TimeClockID',result.SessionID);
                             
                         }
