@@ -107,7 +107,7 @@
             </div>
         </div>
         <!-- Dashboard div -->
-        <div class="card col-12" id="divView" style="display:none;">
+        <div class="card col-12" id="divDashboard" style="display:none;">
             <div class="card-body">
                 <h2 class="col-12 text-center"><span class="fw-bold">Dennis</span><span class="fw-light">Cooper</span></h2>
                 <p class="col-12 mt-2 fw-light text-center">After recording your current activity, you will be able to review your time</p>
@@ -134,16 +134,20 @@
         const regPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/
         
         $('#btnRegisterSwap').on('click', function(){
+            console.log('Register Swap Clicked');
             $('#divLogin').slideToggle(function(){
                 $('#divRegister').slideToggle();
             })
         })
         $('#btnReturnLogin').on('click',function(){
+            console.log('Return to Login Clicked');
             $('#divRegister').slideToggle(function(){
                 $('#divLogin').slideToggle();
             })
         })
         $('#btnCreate').on('click',function(){
+                    // setup variables to hold the values of the input fields
+                    console.log('Create Clicked');
                     let strFirstName = $('#txtFirstName').val();
                     let strLastName = $('#txtLastName').val();
                     let strCoopID = $('#txtCoopID').val();
@@ -155,49 +159,58 @@
                     let strCity = $('#txtCity').val();
                     let strZipCode = $('#txtZipCode').val();
                     // setup a test to check values
-                    let blnError = false;
+                    let blnError = true;
                     // series of logic statements to ensure the functionality of the required fields
                     if(strFirstName == ''){
+                        console.log(strFirstName)
                         Swal.fire({title: "Required?", 
                                                 text: "You Must Enter Your First Name",
                                                 icon: "error"});
                     }
-                    if(strLastName == ''){  
+                    if(strLastName == ''){
+                        console.log(strLastName);  
                         Swal.fire({title: "Required?", 
                                                 text: "You Must Enter Your Last Name",
                                                 icon: "error"});
                     }
                     if(strEmail == ''){
+                        console.log(strEmail);
                         Swal.fire({title: "Required?", 
                                                 text: "You Must Enter Your Email",
                                                 icon: "error"});
                     }
                     if(strCoopID == ''){
+                        console.log(strCoopID);
                         Swal.fire({title: "Required?", 
                                                 text: "You Must Enter Your CoopID",
                                                 icon: "error"});
                     }
                     if(strPassword== ''){
+                        console.log(strPassword);
                         Swal.fire({title: "Required", 
                                                 text: "You Must Enter Your Password",
                                                 icon: "error"});
                     }
                     if(strAddress1 == ''){
+                        console.log(strAddress1);
                         Swal.fire({title: "Required", 
                                                 text: "You Must Enter Your Address",
                                                 icon: "error"});
                     }
-                    if(strState == ''){ 
+                    if(strState == ''){
+                        console.log(strState); 
                         Swal.fire({title: "Required", 
                                                 text: "You Must Enter Your State",
                                                 icon: "error"});
                     }
                     if(strCity == ''){
+                        console.log(strCity);
                         Swal.fire({title: "Required", 
                                                 text: "You Must Enter Your City",
                                                 icon: "error"});
                     }
                     if(strZipCode == ''){
+                        console.log(strZipCode);
                         Swal.fire({title: "Required", 
                                                 text: "You Must Enter Your Zip Code",
                                                 icon: "error"});
@@ -267,7 +280,8 @@
                     
                 })
                 $('#btnLogin').on('click',function(){
-                    $.post('https://simplecoop.swollenhippo.com/users.php',{Email:$('#txtLoginEmail').val(),Password:$('#txtLoginPassword').val()},function(result){
+                    console.log('Login Clicked');
+                    $.get('https://simplecoop.swollenhippo.com/users.php',{Email:$('#txtLoginEmail').val(),Password:$('#txtLoginPassword').val()},function(result){
                         result = JSON.parse(result);
                         if(result.Error){
                             Swal.fire({
@@ -278,7 +292,7 @@
                         } else {
                             sessionStorage.setItem('TimeClockID',result.SessionID);
                             $('#divLogin').slideToggle(function(){
-                                $('#divView').slideToggle();
+                                $('#divDshboard').slideToggle();
                             })
                         }
                     })
