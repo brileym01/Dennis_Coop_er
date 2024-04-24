@@ -95,7 +95,7 @@
         <!-- Login card div -->
         <div class="card col-6 mt-50" id="divLogin">
             <div class="card-body">
-                <h2 class="col-12 text-center"><span class="fw-bold">Dennis</span><span class="fw-light">Cooper</span></h2>
+                <h2 class="col-12 text-center"><span class="fw-bold">Simple</span><span class="fw-light">Coop</span></h2>
                 <form>
                     <label class="form-label mb-0" for="txtLoginEmail"> Email </label>
                     <input class="form-control" type="email"  id="txtLoginEmail">
@@ -107,7 +107,7 @@
             </div>
         </div>
         <!-- Dashboard div -->
-        <div class="card col-12" id="divDashboard" style="display:none;">
+        <div class="card col-12" id="divDashboard" style="display:none">
             <div class="card-body">
                 <h2 class="col-12 text-center"><span class="fw-bold">Dennis</span><span class="fw-light">Cooper</span></h2>
                 <p class="col-12 mt-2 fw-light text-center">After recording your current activity, you will be able to review your time</p>
@@ -143,6 +143,12 @@
             console.log('Return to Login Clicked');
             $('#divRegister').slideToggle(function(){
                 $('#divLogin').slideToggle();
+            })
+        })
+        $('#btnLogin').on('click', function(){
+            console.log('Login Clicked');
+            $('#divLogin').slideToggle(function(){
+                $('#divDashboard').slideToggle();
             })
         })
         $('#btnCreate').on('click',function(){
@@ -290,10 +296,9 @@
                                 text: result.Error
                             })
                         } else {
+                            console.log("divDashboard Swap Clicked");
                             sessionStorage.setItem('TimeClockID',result.SessionID);
-                            $('#divLogin').slideToggle(function(){
-                                $('#divDshboard').slideToggle();
-                            })
+                            
                         }
                     })
                 })
