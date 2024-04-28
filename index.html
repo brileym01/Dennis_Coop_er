@@ -69,6 +69,54 @@
             background-color: #303030;
             color: white;
         }
+        /* Define the switch */
+        .switch {
+        position: relative;
+        display: inline-block;
+        width: 44px; /* Width of the switch */
+        height: 30px; /* Height of the switch */
+        }
+
+        /* Define the slider */
+        .switch .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc; /* Default background */
+        transition: 0.4s; /* Transition for smooth sliding */
+        border-radius: 20px; /* Rounded corners */
+        }
+
+        /* Add the round shape to the slider */
+        .switch .slider:before {
+        position: absolute;
+        content: "";
+        height: 24px; /* Inner circle height */
+        width: 24px; /* Inner circle width */
+        left: 3px; /* Offset to create padding */
+        bottom: 3px; /* Offset from the bottom */
+        background-color: white; /* Inner circle color */
+        transition: 0.4s; /* Transition for smooth sliding */
+        border-radius: 50%; /* Circle shape */
+        }
+
+        /* Change the slider when checkbox is checked */
+        .switch input:checked + .slider {
+        background-color: #2196F3; /* Background when checked */
+        }
+        /* Hide default HTML checkbox */
+        .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+        }
+        /* Move the inner circle to the right when checked */
+        .switch input:checked + .slider:before {
+        transform: translateX(14px); /* Move the circle to the right */
+        }
     </style>
 </head>
 <body class="col-12 light-mode scroll">
@@ -155,13 +203,23 @@
                     <div class="card">
                       <div class="card-body">
                         <h6>Doors</h6>
+                        <!-- Rounded switch -->
+                        <label class="switch">
+                            <input type="checkbox" id="mySwitch"> <!-- Hidden checkbox -->
+                            <span class="slider round"></span> <!-- The slider design -->
+                        </label>
                       </div>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="card">
                       <div class="card-body">
-                        <h6>Lights</h6>
+                        <h6>Electric Fence</h6>
+                        <!-- Rounded switch -->
+                        <label class="switch">
+                            <input type="checkbox" id="mySwitch"> <!-- Hidden checkbox -->
+                            <span class="slider round"></span> <!-- The slider design -->
+                        </label>
                       </div>
                     </div>
                   </div>
@@ -172,14 +230,19 @@
                   <div class="col-md-6">
                     <div class="card">
                       <div class="card-body">
-                        <h6>Electric Fence</h6>
+                        <h6>Lights</h6>
+                        <!-- Rounded switch -->
+                        <label class="switch">
+                            <input type="checkbox" id="mySwitch"> <!-- Hidden checkbox -->
+                            <span class="slider round"></span> <!-- The slider design -->
+                        </label>
                       </div>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="card">
                       <div class="card-body">
-                        <h6>Goodmorning</h6>
+                        <h6>Set Light Color</h6>
                       </div>
                     </div>
                   </div>
@@ -190,14 +253,24 @@
                   <div class="col-md-6">
                     <div class="card">
                       <div class="card-body">
-                        <h6>Goodnight</h6>
+                        <h6>Goodmorning</h6>
+                        <!-- Rounded switch -->
+                        <label class="switch">
+                            <input type="checkbox" id="mySwitch"> <!-- Hidden checkbox -->
+                            <span class="slider round"></span> <!-- The slider design -->
+                        </label>
                       </div>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="card">
                       <div class="card-body">
-                        <h6>Set Light</h6>
+                        <h6>Goodnight</h6>
+                        <!-- Rounded switch -->
+                        <label class="switch">
+                            <input type="checkbox" id="mySwitch"> <!-- Hidden checkbox -->
+                            <span class="slider round"></span> <!-- The slider design -->
+                        </label>
                       </div>
                     </div>
                   </div>
