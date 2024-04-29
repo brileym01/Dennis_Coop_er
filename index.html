@@ -95,7 +95,7 @@
         <!-- Login card div -->
         <div class="card col-6 mt-50" id="divLogin">
             <div class="card-body">
-                <h2 class="col-12 text-center"><span class="fw-bold">Simple</span><span class="fw-light">Coop</span></h2>
+                <h2 class="col-12 text-center"><span class="fw-bold">Dennis</span><span class="fw-light">Cooper</span></h2>
                 <form>
                     <label class="form-label mb-0" for="txtLoginEmail"> Email </label>
                     <input class="form-control" type="email"  id="txtLoginEmail">
@@ -107,7 +107,7 @@
             </div>
         </div>
         <!-- Dashboard div -->
-        <div class="card col-12" id="divDashboard" style="display:none">
+        <div class="card col-12" id="divView" style="display:none;">
             <div class="card-body">
                 <h2 class="col-12 text-center"><span class="fw-bold">Dennis</span><span class="fw-light">Cooper</span></h2>
                 <p class="col-12 mt-2 fw-light text-center">After recording your current activity, you will be able to review your time</p>
@@ -128,26 +128,22 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js"></script>
     <script>
-        
+        //Briley-Branch test 2
         // Begin common regular expression patterns
         const regEmail = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
         const regPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/
         
         $('#btnRegisterSwap').on('click', function(){
-            console.log('Register Swap Clicked');
             $('#divLogin').slideToggle(function(){
                 $('#divRegister').slideToggle();
             })
         })
         $('#btnReturnLogin').on('click',function(){
-            console.log('Return to Login Clicked');
             $('#divRegister').slideToggle(function(){
                 $('#divLogin').slideToggle();
             })
         })
         $('#btnCreate').on('click',function(){
-                    // setup variables to hold the values of the input fields
-                    console.log('Create Clicked');
                     let strFirstName = $('#txtFirstName').val();
                     let strLastName = $('#txtLastName').val();
                     let strCoopID = $('#txtCoopID').val();
@@ -162,55 +158,46 @@
                     let blnError = true;
                     // series of logic statements to ensure the functionality of the required fields
                     if(strFirstName == ''){
-                        console.log(strFirstName)
                         Swal.fire({title: "Required?", 
                                                 text: "You Must Enter Your First Name",
                                                 icon: "error"});
                     }
-                    if(strLastName == ''){
-                        console.log(strLastName);  
+                    if(strLastName == ''){  
                         Swal.fire({title: "Required?", 
                                                 text: "You Must Enter Your Last Name",
                                                 icon: "error"});
                     }
                     if(strEmail == ''){
-                        console.log(strEmail);
                         Swal.fire({title: "Required?", 
                                                 text: "You Must Enter Your Email",
                                                 icon: "error"});
                     }
                     if(strCoopID == ''){
-                        console.log(strCoopID);
                         Swal.fire({title: "Required?", 
                                                 text: "You Must Enter Your CoopID",
                                                 icon: "error"});
                     }
                     if(strPassword== ''){
-                        console.log(strPassword);
                         Swal.fire({title: "Required", 
                                                 text: "You Must Enter Your Password",
                                                 icon: "error"});
                     }
                     if(strAddress1 == ''){
-                        console.log(strAddress1);
                         Swal.fire({title: "Required", 
                                                 text: "You Must Enter Your Address",
                                                 icon: "error"});
                     }
-                    if(strState == ''){
-                        console.log(strState); 
+                    if(strState == ''){ 
                         Swal.fire({title: "Required", 
                                                 text: "You Must Enter Your State",
                                                 icon: "error"});
                     }
                     if(strCity == ''){
-                        console.log(strCity);
                         Swal.fire({title: "Required", 
                                                 text: "You Must Enter Your City",
                                                 icon: "error"});
                     }
                     if(strZipCode == ''){
-                        console.log(strZipCode);
                         Swal.fire({title: "Required", 
                                                 text: "You Must Enter Your Zip Code",
                                                 icon: "error"});
@@ -276,27 +263,23 @@
                             }
                         })
                     }
-                   
+                    
                     
                 })
                 $('#btnLogin').on('click',function(){
-                    console.log('Login Clicked');
-                    $.post('https://simplecoop.swollenhippo.com/sessions.php',{Email:$('#txtLoginEmail').val(),Password:$('#txtLoginPassword').val()},function(result){
+                    $.post('https://simplecoop.swollenhippo.com/users.php',{Email:$('#txtLoginEmail').val(),Password:$('#txtLoginPassword').val()},function(result){
                         result = JSON.parse(result);
-                        if(result.Outcome){
+                        if(result.Error){
                             Swal.fire({
                                 icon:'error',
                                 title:'Your Login has Failed',
                                 text: result.Error
                             })
                         } else {
-                            
-                                $('#divLogin').slideToggle(function(){
-                                    $('#divDashboard').slideToggle();
-                                })
-                            
                             sessionStorage.setItem('TimeClockID',result.SessionID);
-                            
+                            $('#divLogin').slideToggle(function(){
+                                $('#divView').slideToggle();
+                            })
                         }
                     })
                 })
