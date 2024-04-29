@@ -59,16 +59,6 @@
             border: none;
             cursor: pointer;
         }
- 
-        button.light-mode-btn {
-            background-color: #f0f0f0;
-            color: black;
-        }
- 
-        button.dark-mode-btn {
-            background-color: #303030;
-            color: white;
-        }
         /* Define the switch */
         .switch {
         position: relative;
@@ -117,6 +107,17 @@
         .switch input:checked + .slider:before {
         transform: translateX(14px); /* Move the circle to the right */
         }
+        #divDashboard {
+            margin: 0; /* Ensure no default margin */
+            padding: 0; /* Ensure no default padding */
+            background-image: url('DashboardBackground.avif');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover; /* Ensure the background covers the entire viewport */
+            background-position: center; /* Center the background image */
+            height: 100vh; /* Set the height of the body to the full viewport height */
+            overflow: hidden;
+    }
     </style>
 </head>
 <body class="col-12 light-mode scroll">
@@ -194,12 +195,10 @@
                             <h6 id="currentDate" class="text-start"></h6>
                         </div>
                         <div class="col">
-                            <h4 class="text-center mb-0"><span class="fw-bold">Dennis</span><span class="fw-light">Cooper</span></h4>
+                            <h4 class="text-center mb-0"><span class="fw-bold">Simple</span><span class="fw-light">Coop</span></h4>
                         </div>
                         <div class="col text-end">
-                            <button type="button" id="btnModeToggle" class="btn btn-outline-success btn-sm me-2">Log Out</button>
-                            <button type="button" id="liveFeedBtn" class="btn btn-outline-success btn-sm me-2">Live Feed</button>
-                            <button type="button" class="btn btn-outline-success btn-sm">Light/Dark</button>
+                            <button type="button" id="btnModeToggle" class="btn btn-outline-success btn-sm"  style="float:right" onclick="logout()" >Log Out</button>                            <button type="button" id="liveFeedBtn" class="btn btn-outline-success btn-sm me-2">Live Feed</button>
                         </div>
                     </div>
                 </div>
@@ -360,6 +359,10 @@
         const regEmail = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
         const regPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/
        
+        function logout() {
+            // Reload the page
+            location.reload();
+        }
         $('#btnRegisterSwap').on('click', function(){
             console.log('Register Swap Clicked');
             $('#divLogin').slideToggle(function(){
@@ -553,21 +556,7 @@
         }
         // Execute when page loads
         window.onload = displayDate;
- 
-        function toggleDarkMode() {
-            const body = document.body;
- 
-            if (body.classList.contains("light-mode")) {
-                body.classList.replace("light-mode", "dark-mode");
-            } else {
-                body.classList.replace("dark-mode", "light-mode");
-            }
-        }
- 
-        window.addEventListener('load', () => {
-            const toggleButton = document.getElementById('btnModeToggle');
-            toggleButton.addEventListener('click', toggleDarkMode);
-        });
+
         // Wrap the JavaScript code inside a DOMContentLoaded event listener
         document.addEventListener("DOMContentLoaded", function() {
             // Add event listener for the button click
