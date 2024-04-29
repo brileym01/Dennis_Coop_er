@@ -40,6 +40,84 @@
             max-height: 3000px;
             overflow-y: auto;
         }
+        /* Light mode styles */
+        body.light-mode {
+            background-color: white; /* Light background */
+            color: black; /* Dark text */
+        }
+ 
+        /* Dark mode styles */
+        body.dark-mode {
+            background-color: black; /* Dark background */
+            color: white; /* Light text */
+        }
+ 
+        /* Button styles */
+        button {
+            margin: 10px;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+        /* Define the switch */
+        .switch {
+        position: relative;
+        display: inline-block;
+        width: 44px; /* Width of the switch */
+        height: 30px; /* Height of the switch */
+        }
+ 
+        /* Define the slider */
+        .switch .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc; /* Default background */
+        transition: 0.4s; /* Transition for smooth sliding */
+        border-radius: 20px; /* Rounded corners */
+        }
+ 
+        /* Add the round shape to the slider */
+        .switch .slider:before {
+        position: absolute;
+        content: "";
+        height: 24px; /* Inner circle height */
+        width: 24px; /* Inner circle width */
+        left: 3px; /* Offset to create padding */
+        bottom: 3px; /* Offset from the bottom */
+        background-color: white; /* Inner circle color */
+        transition: 0.4s; /* Transition for smooth sliding */
+        border-radius: 50%; /* Circle shape */
+        }
+ 
+        /* Change the slider when checkbox is checked */
+        .switch input:checked + .slider {
+        background-color: #2196F3; /* Background when checked */
+        }
+        /* Hide default HTML checkbox */
+        .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+        }
+        /* Move the inner circle to the right when checked */
+        .switch input:checked + .slider:before {
+        transform: translateX(14px); /* Move the circle to the right */
+        }
+        #divDashboard {
+            margin: 0; /* Ensure no default margin */
+            padding: 0; /* Ensure no default padding */
+            background-image: url('DashboardBackground.avif');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover; /* Ensure the background covers the entire viewport */
+            background-position: center; /* Center the background image */
+            height: 100vh; /* Set the height of the body to the full viewport height */
+            overflow: hidden;
+    }
     </style>
 </head>
 <body class="col-12 light-mode scroll">
@@ -109,19 +187,164 @@
             </div>
         </div>
         <!-- Dashboard div -->
-        <div class="card col-12" id="divView" style="display:none;">
-            <div class="card-body">
-                <h2 class="col-12 text-center"><span class="fw-bold">Dennis</span><span class="fw-light">Cooper</span></h2>
-                <p class="col-12 mt-2 fw-light text-center">After recording your current activity, you will be able to review your time</p>
-                <div class="col-12 mt-5 d-flex justify-content-around">
-                    <button class="btn btn-success col-5 btnClock" data-type="Clock In" id="btnClockIn">Clock In</button>
-                    <button class="btn btn-danger col-5 btnClock" data-type="Clock Out" id="btnClockOut">Clock Out</button>
+        <div id="divDashboard" style="display:none" class="col-12">
+            <div class="card col-12">
+                <div class="card-body" style="height: 80px;">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h6 id="currentDate" class="text-start"></h6>
+                        </div>
+                        <div class="col">
+                            <h4 class="text-center mb-0"><span class="fw-bold">Simple</span><span class="fw-light">Coop</span></h4>
+                        </div>
+                        <div class="col text-end">
+                            <button type="button" id="btnModeToggle" class="btn btn-outline-success btn-sm"  style="float:right" onclick="logout()" >Log Out</button>                            <button type="button" id="liveFeedBtn" class="btn btn-outline-success btn-sm me-2">Live Feed</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-12 mt-2 d-flex justify-content-center">
-                    <button class="btn btn-secondary btn-lg col-12" id="btnReview">View Records</button>
+            </div>
+            <!-- First row -->
+            <div class="container">
+                <div class="row col-12 mt-2 margin-right-5">
+                    <!-- start of door card -->
+                    <div class="col-lg-3">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <h6>Doors</h6>
+                                <!-- Rounded switch -->
+                                <label class="switch">
+                                    <input type="checkbox" id="mySwitch"> <!-- Hidden checkbox -->
+                                    <span class="slider round"></span> <!-- The slider design -->
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end of door card -->
+ 
+                    <!-- start of electric fence card -->
+                    <div class="col-lg-3">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <h6>Electric Fence</h6>
+                                <!-- Rounded switch -->
+                                <label class="switch">
+                                    <input type="checkbox" id="mySwitch"> <!-- Hidden checkbox -->
+                                    <span class="slider round"></span> <!-- The slider design -->
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end of electric fence card -->
+                   
+                    <!--start of Food/Level Card -->
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <h6> Food and Water Levels </h6>
+                                <div class="progress" role="progressbar" aria-label="Feed Level" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="height:fit-content">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 25%"> 25% </div>
+                                </div>
+                                <h2>   </h2>
+                                <div class="progress" role="progressbar" aria-label="Water Level" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="height:fit-content">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 50%"> 50% </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <!-- end of food/water level card -->
                 </div>
-                <div class="col-12 mt-2 d-flex justify-content-center">
-                    <button class="btn btn-danger btn-lg col-12" id="btnLogout">Logout</button>
+            </div>
+            <!-- end of first row-->
+ 
+            <!-- second row -->
+            <div class="container">
+                <div class="row col-12 mt-3">
+                    <!-- start of light card -->
+                    <div class="col-lg-3">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <h6>Lights</h6>
+                                <h1>   </h1>
+                                <!-- Rounded switch -->
+                                <label class="switch">
+                                    <input type="checkbox" id="mySwitch"> <!-- Hidden checkbox -->
+                                    <span class="slider round"></span> <!-- The slider design -->
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end of Light card -->
+ 
+                    <!-- Start of set temp card -->
+                    <!-- This one needs a post and a get to get
+                        the current temp of the coop and post what
+                        we want it to be  -->
+                    <div class="col-lg-3">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <h6>Set Temperature</h6>
+                                <p> Current Temp: </p>
+                                <input class="form-control form-control-sm" type="text" placeholder="Enter Temperature" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end of set temp card -->
+ 
+                    <!--start of temp Card -->
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <h6> Temperature </h6>
+                                <a class="weatherwidget-io" href="https://forecast7.com/en/36d16n85d50/cookeville/?unit=us" data-label_1="COOKEVILLE" data-mode="Current" data-days="3" data-theme="pure" >COOKEVILLE</a>  
+                            </div>
+                        </div>
+                    </div>
+                <!-- end of temp card -->
+                </div>
+            </div>
+            <!-- end of seccond row-->
+ 
+            <!-- third row -->
+            <div class="container">
+                <div class="row col-12 mt-3 mb-2">
+                    <!-- start of Light color card -->
+                    <div class="col-lg-3">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <h6>Light Color</h6>
+                                <button type="button"class="btn btn-md" style="background-color: blueviolet;"></button>
+                                <button type="button"class="btn btn-md" style="background-color: rgb(255, 0, 0);"></button>
+                                <button type="button"class="btn btn-md" style="background-color: rgb(250, 250, 251);"></button>
+                                <button type="button"class="btn btn-md" style="background-color: rgb(0, 255, 38);"></button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end of light color card -->
+ 
+                    <!-- Start of chicken count card -->
+                    <div class="col-lg-3">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <h6>Chicken Count</h6>
+                                <p class="fs-1 font-monospace">23</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end of chicken count card -->
+ 
+                    <!--start of egg count Card -->
+                    <!-- This one needs a post and a get to get
+                        the egg count and post the amount of eggs collected   -->
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <h6> Egg Count </h6>
+                                <input type="number" min="0" max="100" style="max-height: fit-content;">
+                                <button class="btn btn-outline-success">Enter</button>
+                            </div>
+                        </div>
+                    </div>
+                <!-- end of egg count card -->
                 </div>
             </div>
             <!-- end of third row-->
@@ -135,7 +358,11 @@
         // Begin common regular expression patterns
         const regEmail = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
         const regPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/
-        
+       
+        function logout() {
+            // Reload the page
+            location.reload();
+        }
         $('#btnRegisterSwap').on('click', function(){
             console.log('Register Swap Clicked');
             $('#divLogin').slideToggle(function(){
@@ -313,6 +540,34 @@
                 }
             });
         })
+        // Function to get current date
+        function getCurrentDate() {
+            const today = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' }; // Display format
+            return today.toLocaleDateString(undefined, options); // Adjust to locale
+        }
+ 
+        // Function to display current date
+        function displayDate() {
+            const dateElement = document.getElementById("currentDate");
+            if (dateElement) {
+                dateElement.textContent = getCurrentDate(); // Update the text
+            }
+        }
+        // Execute when page loads
+        window.onload = displayDate;
+ 
+        // Wrap the JavaScript code inside a DOMContentLoaded event listener
+        document.addEventListener("DOMContentLoaded", function() {
+            // Add event listener for the button click
+            document.getElementById("liveFeedBtn").addEventListener("click", function() {
+                // Navigate to the desired URL when the button is clicked
+                //window.location.href = "https://www.newschannel5.com/weather/weather-cams/cookeville-weather-cam"; // Replace "https://example.com/live-feed" with the actual URL
+                window.open("https://www.newschannel5.com/weather/weather-cams/cookeville-weather-cam", "_blank");
+            });
+        });
+       
+        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
     </script>
 </body>
 </html>
