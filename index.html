@@ -38,6 +38,18 @@
             max-height: 3000px;
             overflow-y: auto;
         }
+        #divDashboard {
+            margin: 0; /* Ensure no default margin */
+            padding: 0; /* Ensure no default padding */
+            background-image: url('DashboardBackground.avif');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover; /* Ensure the background covers the entire viewport */
+            background-position: center; /* Center the background image */
+            height: 100vh; /* Set the height of the body to the full viewport height */
+            overflow: hidden;
+        }
+
     </style>
 </head>
 <body class="col-12 bg-dark scroll">
@@ -95,7 +107,7 @@
         <!-- Login card div -->
         <div class="card col-6 mt-50" id="divLogin">
             <div class="card-body">
-                <h2 class="col-12 text-center"><span class="fw-bold">Dennis</span><span class="fw-light">Cooper</span></h2>
+                <h2 class="col-12 text-center"><span class="fw-bold">Simple</span><span class="fw-light">Coop</span></h2>
                 <form>
                     <label class="form-label mb-0" for="txtLoginEmail"> Email </label>
                     <input class="form-control" type="email"  id="txtLoginEmail">
@@ -109,7 +121,7 @@
         <!-- Dashboard div -->
         <div class="card col-12" id="divDashboard" style="display:none;">
             <div class="card-body">
-                <h2 class="col-12 text-center"><span class="fw-bold">Dennis</span><span class="fw-light">Cooper</span></h2>
+                <h2 class="col-12 text-center" style="color: white;"><span class="fw-bold">Simple</span><span class="fw-light ">Coop</span></h2>
                 <p class="col-12 mt-2 fw-light text-center">After recording your current activity, you will be able to review your time</p>
                 <div class="col-12 mt-5 d-flex justify-content-around">
                     <button class="btn btn-success col-5 btnClock" data-type="Clock In" id="btnClockIn">Clock In</button>
