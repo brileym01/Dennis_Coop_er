@@ -268,16 +268,21 @@
                     
                 })
                 $('#btnLogin').on('click',function(){
-                    $.post('https://simplecoop.swollenhippo.com/users.php',{Email:$('#txtLoginEmail').val(),Password:$('#txtLoginPassword').val()},function(result){
+                    console.log('Login Clicked');
+                    $.post('https://simplecoop.swollenhippo.com/sessions.php',{Email:$('#txtLoginEmail').val(),Password:$('#txtLoginPassword').val()},function(result){
                         result = JSON.parse(result);
-                        if(result.Error){
-                            console.log('login check');
+                        if(result.Outcome){
                             Swal.fire({
                                 icon:'error',
                                 title:'Your Login has Failed',
                                 text: result.Error
                             })
                         } else {
+                            
+                                $('#divLogin').slideToggle(function(){
+                                    $('#divDashboard').slideToggle();
+                                })
+                            
                             sessionStorage.setItem('TimeClockID',result.SessionID);
                             $('#divLogin').slideToggle(function(){
                                 $('#divView').slideToggle();
