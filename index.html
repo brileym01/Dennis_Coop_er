@@ -268,17 +268,20 @@
                     </div>
                     <!-- end of Light card -->
 
-                    <!-- Start of light color card -->
+                    <!-- Start of set temp card -->
+                    <!-- This one needs a post and a get to get
+                        the current temp of the coop and post what
+                        we want it to be  -->
                     <div class="col-lg-3">
                         <div class="card">
                             <div class="card-body text-center">
                                 <h6>Set Temperature</h6>
                                 <p> Current Temp: </p>
-                                <input class="form-control" type="text">
+                                <input class="form-control form-control-sm" type="text" placeholder="Enter Temperature" type="text">
                             </div>
                         </div>
                     </div>
-                    <!-- end of light color card -->
+                    <!-- end of set temp card -->
 
                     <!--start of temp Card -->
                     <div class="col-lg-6">
@@ -296,8 +299,8 @@
 
             <!-- third row -->
             <div class="container">
-                <div class="row col-12 mb-5">
-                    <!-- start of Goodmorning card -->
+                <div class="row col-12 mb-2">
+                    <!-- start of Light color card -->
                     <div class="col-lg-3">
                         <div class="card">
                             <div class="card-body text-center">
@@ -309,24 +312,28 @@
                             </div>
                         </div>
                     </div>
-                    <!-- end of goodmorning card -->
+                    <!-- end of light color card -->
 
-                    <!-- Start of goodnight card -->
-                    <div class="col-lg-3">
+                    <!-- Start of chicken count card -->
+                    <div class="col-3">
                         <div class="card">
                             <div class="card-body text-center">
                                 <h6>Chicken Count</h6>
-                                <h1> 23 </h1>
+                                <p class="fs-1 font-monospace">23</p>
                             </div>
                         </div>
                     </div>
-                    <!-- end of goodnight card -->
+                    <!-- end of chicken count card -->
 
                     <!--start of egg count Card -->
+                    <!-- This one needs a post and a get to get
+                        the egg count and post the amount of eggs collected   -->
                     <div class="col-lg-6">
                         <div class="card">
                             <div class="card-body text-center">
                                 <h6> Egg Count </h6>
+                                <input type="number" min="0" max="100" style="max-height: fit-content;">
+                                <button class="btn btn-outline-success">Enter</button>
                             </div>
                         </div>
                     </div>
