@@ -278,10 +278,11 @@
                                 text: result.Error
                             })
                         } else {
-                            sessionStorage.setItem('TimeClockID',result.SessionID);
+                            sessionStorage.setItem('TimeClockID', result.SessionID);
                             $('#divLogin').slideToggle(function(){
                                 $('#divDashboard').slideToggle();
-                            })
+                                $('body').css('background-image', 'none'); // Remove background image
+                            });
                         }
                     })
                 })
