@@ -155,8 +155,9 @@
                     let strCity = $('#txtCity').val();
                     let strZipCode = $('#txtZipCode').val();
                     // setup a test to check values
-                    let blnError = true;
+                    let blnError = false;
                     // series of logic statements to ensure the functionality of the required fields
+                    console.log('made it here.');
                     if(strFirstName == ''){
                         Swal.fire({title: "Required?", 
                                                 text: "You Must Enter Your First Name",
@@ -270,6 +271,7 @@
                     $.post('https://simplecoop.swollenhippo.com/users.php',{Email:$('#txtLoginEmail').val(),Password:$('#txtLoginPassword').val()},function(result){
                         result = JSON.parse(result);
                         if(result.Error){
+                            console.log('login check');
                             Swal.fire({
                                 icon:'error',
                                 title:'Your Login has Failed',
