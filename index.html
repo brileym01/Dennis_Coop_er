@@ -1,5 +1,5 @@
 <!-- Briley and Sam SimpleCoop Project*/ -->
-
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,8 +12,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.min.css">
     <style>
         #btnLogin.btn:focus {
-            
-            background-color: rgb(141, 198, 63) !important; 
+           
+            background-color: rgb(141, 198, 63) !important;
         }
         .card-header {
             display: flex;
@@ -23,7 +23,7 @@
         .card-header img {
             width: 50px;
             height: 50px;
-            margin-right: 10px; 
+            margin-right: 10px;
         }
         body {
             margin: 0; /* Ensure no default margin */
@@ -45,19 +45,29 @@
             background-color: white; /* Light background */
             color: black; /* Dark text */
         }
-
+ 
         /* Dark mode styles */
         body.dark-mode {
             background-color: black; /* Dark background */
             color: white; /* Light text */
         }
-
+ 
         /* Button styles */
         button {
             margin: 10px;
             padding: 10px;
             border: none;
             cursor: pointer;
+        }
+ 
+        button.light-mode-btn {
+            background-color: #f0f0f0;
+            color: black;
+        }
+ 
+        button.dark-mode-btn {
+            background-color: #303030;
+            color: white;
         }
         /* Define the switch */
         .switch {
@@ -66,7 +76,7 @@
         width: 44px; /* Width of the switch */
         height: 30px; /* Height of the switch */
         }
-
+ 
         /* Define the slider */
         .switch .slider {
         position: absolute;
@@ -79,7 +89,7 @@
         transition: 0.4s; /* Transition for smooth sliding */
         border-radius: 20px; /* Rounded corners */
         }
-
+ 
         /* Add the round shape to the slider */
         .switch .slider:before {
         position: absolute;
@@ -92,7 +102,7 @@
         transition: 0.4s; /* Transition for smooth sliding */
         border-radius: 50%; /* Circle shape */
         }
-
+ 
         /* Change the slider when checkbox is checked */
         .switch input:checked + .slider {
         background-color: #2196F3; /* Background when checked */
@@ -107,13 +117,6 @@
         .switch input:checked + .slider:before {
         transform: translateX(14px); /* Move the circle to the right */
         }
-        .dashboard-background {
-        background-image: url('DBTest.jpg');
-        background-repeat: no-repeat;
-        background-size: cover;
-        /* Add any other background properties here */
-    }
-
     </style>
 </head>
 <body class="col-12 light-mode scroll">
@@ -154,7 +157,7 @@
                     <div class="form-group mb-3">
                         <label class="form-label mb-0" for="txtState"> State </label>
                         <input class="form-control"  id="txtState" type="text">
-                    </div>           
+                    </div>          
                     <div class="form-group mb-3">
                         <label class="form-label mb-0" for="txtCity"> City </label>
                         <input class="form-control"  id="txtCity" type="text">
@@ -183,19 +186,27 @@
             </div>
         </div>
         <!-- Dashboard div -->
-        <div id="divDashboard" class="col-12 dashboard-background light-mode" style="display:none">            
+        <div id="divDashboard" style="display:none" class="col-12">
             <div class="card col-12">
-                <div class="card-body col-12 mb-0">
-                    <h2 class="col-12 text-center font fs-2"><span class="fw-bold">Dennis</span><span class="fw-light">Cooper</span></h2>
-                    <h6 style="float:left "id="currentDate"></h6>
-                    <button type="button" id="btnModeToggle" class="btn btn-outline-success btn-sm"  style="float:right"" >Log Out</button>
-                    <button type="button" id= "liveFeedBtn" class="btn btn-outline-success btn-sm"  style="float:right">Live Feed</button>
-                    <button type="button" class="btn btn-outline-success btn-sm" style="float:right">Light/Dark</button>
+                <div class="card-body" style="height: 80px;">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h6 id="currentDate" class="text-start"></h6>
+                        </div>
+                        <div class="col">
+                            <h4 class="text-center mb-0"><span class="fw-bold">Dennis</span><span class="fw-light">Cooper</span></h4>
+                        </div>
+                        <div class="col text-end">
+                            <button type="button" id="btnModeToggle" class="btn btn-outline-success btn-sm me-2">Log Out</button>
+                            <button type="button" id="liveFeedBtn" class="btn btn-outline-success btn-sm me-2">Live Feed</button>
+                            <button type="button" class="btn btn-outline-success btn-sm">Light/Dark</button>
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- First row -->
             <div class="container">
-                <div class="row col-12 mt-5 margin-right-5">
+                <div class="row col-12 mt-2 margin-right-5">
                     <!-- start of door card -->
                     <div class="col-lg-3">
                         <div class="card">
@@ -210,7 +221,7 @@
                         </div>
                     </div>
                     <!-- end of door card -->
-
+ 
                     <!-- start of electric fence card -->
                     <div class="col-lg-3">
                         <div class="card">
@@ -225,7 +236,7 @@
                         </div>
                     </div>
                     <!-- end of electric fence card -->
-                    
+                   
                     <!--start of Food/Level Card -->
                     <div class="col-lg-6">
                         <div class="card">
@@ -245,10 +256,10 @@
                 </div>
             </div>
             <!-- end of first row-->
-
+ 
             <!-- second row -->
             <div class="container">
-                <div class="row col-12 mt-5">
+                <div class="row col-12 mt-3">
                     <!-- start of light card -->
                     <div class="col-lg-3">
                         <div class="card">
@@ -264,7 +275,7 @@
                         </div>
                     </div>
                     <!-- end of Light card -->
-
+ 
                     <!-- Start of set temp card -->
                     <!-- This one needs a post and a get to get
                         the current temp of the coop and post what
@@ -279,7 +290,7 @@
                         </div>
                     </div>
                     <!-- end of set temp card -->
-
+ 
                     <!--start of temp Card -->
                     <div class="col-lg-6">
                         <div class="card">
@@ -293,10 +304,10 @@
                 </div>
             </div>
             <!-- end of seccond row-->
-
+ 
             <!-- third row -->
             <div class="container">
-                <div class="row col-12 mb-2">
+                <div class="row col-12 mt-3 mb-2">
                     <!-- start of Light color card -->
                     <div class="col-lg-3">
                         <div class="card">
@@ -310,9 +321,9 @@
                         </div>
                     </div>
                     <!-- end of light color card -->
-
+ 
                     <!-- Start of chicken count card -->
-                    <div class="col-3">
+                    <div class="col-lg-3">
                         <div class="card">
                             <div class="card-body text-center">
                                 <h6>Chicken Count</h6>
@@ -321,7 +332,7 @@
                         </div>
                     </div>
                     <!-- end of chicken count card -->
-
+ 
                     <!--start of egg count Card -->
                     <!-- This one needs a post and a get to get
                         the egg count and post the amount of eggs collected   -->
@@ -339,7 +350,7 @@
             </div>
             <!-- end of third row-->
         </div>
-    </div>   
+    </div>  
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js"></script>
@@ -349,10 +360,6 @@
         const regEmail = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
         const regPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/
        
-        function logout() {
-        // Reload the page
-        location.reload();
-    }
         $('#btnRegisterSwap').on('click', function(){
             console.log('Register Swap Clicked');
             $('#divLogin').slideToggle(function(){
@@ -383,61 +390,61 @@
                     // series of logic statements to ensure the functionality of the required fields
                     if(strFirstName == ''){
                         console.log(strFirstName)
-                        Swal.fire({title: "Required?", 
+                        Swal.fire({title: "Required?",
                                                 text: "You Must Enter Your First Name",
                                                 icon: "error"});
                     }
                     if(strLastName == ''){
                         console.log(strLastName);  
-                        Swal.fire({title: "Required?", 
+                        Swal.fire({title: "Required?",
                                                 text: "You Must Enter Your Last Name",
                                                 icon: "error"});
                     }
                     if(strEmail == ''){
                         console.log(strEmail);
-                        Swal.fire({title: "Required?", 
+                        Swal.fire({title: "Required?",
                                                 text: "You Must Enter Your Email",
                                                 icon: "error"});
                     }
                     if(strCoopID == ''){
                         console.log(strCoopID);
-                        Swal.fire({title: "Required?", 
+                        Swal.fire({title: "Required?",
                                                 text: "You Must Enter Your CoopID",
                                                 icon: "error"});
                     }
                     if(strPassword== ''){
                         console.log(strPassword);
-                        Swal.fire({title: "Required", 
+                        Swal.fire({title: "Required",
                                                 text: "You Must Enter Your Password",
                                                 icon: "error"});
                     }
                     if(strAddress1 == ''){
                         console.log(strAddress1);
-                        Swal.fire({title: "Required", 
+                        Swal.fire({title: "Required",
                                                 text: "You Must Enter Your Address",
                                                 icon: "error"});
                     }
                     if(strState == ''){
-                        console.log(strState); 
-                        Swal.fire({title: "Required", 
+                        console.log(strState);
+                        Swal.fire({title: "Required",
                                                 text: "You Must Enter Your State",
                                                 icon: "error"});
                     }
                     if(strCity == ''){
                         console.log(strCity);
-                        Swal.fire({title: "Required", 
+                        Swal.fire({title: "Required",
                                                 text: "You Must Enter Your City",
                                                 icon: "error"});
                     }
                     if(strZipCode == ''){
                         console.log(strZipCode);
-                        Swal.fire({title: "Required", 
+                        Swal.fire({title: "Required",
                                                 text: "You Must Enter Your Zip Code",
                                                 icon: "error"});
                     }
-
+ 
                     if(blnError == false){
-                        Swal.fire({title: "Required", 
+                        Swal.fire({title: "Required",
                             text: "Registration Failed",
                             icon: "error"});
                     } else {
@@ -497,7 +504,7 @@
                         })
                     }
                    
-                    
+                   
                 })
                 $('#btnLogin').on('click',function(){
                     console.log('Login Clicked');
@@ -510,13 +517,13 @@
                                 text: result.Error
                             })
                         } else {
-                            
+                           
                                 $('#divLogin').slideToggle(function(){
                                     $('#divDashboard').slideToggle();
                                 })
-                            
+                           
                             sessionStorage.setItem('TimeClockID',result.SessionID);
-                            
+                           
                         }
                     })
                 })
@@ -526,7 +533,7 @@
                 type: 'REDACTED',
                 data: {SessionID:'REFERENCE THE VALUE HERE FROM SESSION STORAGE'},
                 success: function(result) {
-                    
+                   
                 }
             });
         })
@@ -536,7 +543,7 @@
             const options = { year: 'numeric', month: 'long', day: 'numeric' }; // Display format
             return today.toLocaleDateString(undefined, options); // Adjust to locale
         }
-
+ 
         // Function to display current date
         function displayDate() {
             const dateElement = document.getElementById("currentDate");
@@ -546,7 +553,17 @@
         }
         // Execute when page loads
         window.onload = displayDate;
-
+ 
+        function toggleDarkMode() {
+            const body = document.body;
+ 
+            if (body.classList.contains("light-mode")) {
+                body.classList.replace("light-mode", "dark-mode");
+            } else {
+                body.classList.replace("dark-mode", "light-mode");
+            }
+        }
+ 
         window.addEventListener('load', () => {
             const toggleButton = document.getElementById('btnModeToggle');
             toggleButton.addEventListener('click', toggleDarkMode);
@@ -557,10 +574,10 @@
             document.getElementById("liveFeedBtn").addEventListener("click", function() {
                 // Navigate to the desired URL when the button is clicked
                 //window.location.href = "https://www.newschannel5.com/weather/weather-cams/cookeville-weather-cam"; // Replace "https://example.com/live-feed" with the actual URL
-                window.open("https://www.newschannel5.com/weather/weather-cams/cookeville-weather-cam", "_blank"); 
+                window.open("https://www.newschannel5.com/weather/weather-cams/cookeville-weather-cam", "_blank");
             });
         });
-        
+       
         !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
     </script>
 </body>
