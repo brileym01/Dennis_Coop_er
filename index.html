@@ -60,15 +60,17 @@
             cursor: pointer;
         }
 
-        button.light-mode-btn {
-            background-color: #f0f0f0;
-            color: black;
-        }
+        .light-mode .card {
+        /* Light mode styles */
+        background-color: #fff;
+        color: #000;
+    }
 
-        button.dark-mode-btn {
-            background-color: #303030;
-            color: white;
-        }
+    .dark-mode .card {
+        /* Dark mode styles */
+        background-color: #333;
+        color: #fff;
+    }
         /* Define the switch */
         .switch {
         position: relative;
@@ -117,6 +119,13 @@
         .switch input:checked + .slider:before {
         transform: translateX(14px); /* Move the circle to the right */
         }
+        .dashboard-background {
+        background-image: url('DBTest.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        /* Add any other background properties here */
+    }
+
     </style>
 </head>
 <body class="col-12 light-mode scroll">
@@ -186,28 +195,28 @@
             </div>
         </div>
         <!-- Dashboard div -->
-        <div id="divDashboard" style="display:none" class="col-12">
+        <div id="divDashboard" class="col-12 dashboard-background light-mode" style="display:none">            
             <div class="card col-12">
-                <div class="card-body col-12 mb-0">
+                <div class="card-body col-12 mb-0 .light-mode-bg .dark-mode-bg">
                     <h2 class="col-12 text-center font fs-2"><span class="fw-bold">Dennis</span><span class="fw-light">Cooper</span></h2>
                     <h6 style="float:left "id="currentDate"></h6>
-                    <button type="button" id="btnModeToggle" class="btn btn-outline-success btn-sm"  style="float:right"" >Log Out</button>
+                    <button type="button" id="btnModeToggle" class="btn btn-outline-success btn-sm"  style="float:right" onclick="logout()" >Log Out</button>
                     <button type="button" id= "liveFeedBtn" class="btn btn-outline-success btn-sm"  style="float:right">Live Feed</button>
-                    <button type="button" class="btn btn-outline-success btn-sm" style="float:right">Light/Dark</button>
+                    <button type="button" class="btn btn-outline-success btn-sm" style="float:right" onclick="toggleLightDarkMode()">Light/Dark</button>
                 </div>
             </div>
             <!-- First row -->
-            <div class="container">
-                <div class="row col-12 mt-5 margin-right-5">
+            <div class="container .light-mode-bg .dark-mode-bg">
+                <div class="row col-12 mt-5 margin-right-5 .light-mode-bg .dark-mode-bg">
                     <!-- start of door card -->
-                    <div class="col-lg-3">
-                        <div class="card">
-                            <div class="card-body text-center">
+                    <div class="col-lg-3 .light-mode-bg .dark-mode-bg">
+                        <div class="card .light-mode-bg .dark-mode-bg">
+                            <div class="card-body text-center .light-mode-bg .dark-mode-bg">
                                 <h6>Doors</h6>
                                 <!-- Rounded switch -->
-                                <label class="switch">
+                                <label class="switch .light-mode-bg .dark-mode-bg">
                                     <input type="checkbox" id="mySwitch"> <!-- Hidden checkbox -->
-                                    <span class="slider round"></span> <!-- The slider design -->
+                                    <span class="slider round .light-mode-bg .dark-mode-bg"></span> <!-- The slider design -->
                                 </label>
                             </div>
                         </div>
@@ -215,9 +224,9 @@
                     <!-- end of door card -->
 
                     <!-- start of electric fence card -->
-                    <div class="col-lg-3">
-                        <div class="card">
-                            <div class="card-body text-center">
+                    <div class="col-lg-3 .light-mode-bg .dark-mode-bg">
+                        <div class="card .light-mode-bg .dark-mode-bg">
+                            <div class="card-body text-center .light-mode-bg .dark-mode-bg">
                                 <h6>Electric Fence</h6>
                                 <!-- Rounded switch -->
                                 <label class="switch">
@@ -351,7 +360,11 @@
         // Begin common regular expression patterns
         const regEmail = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
         const regPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/
-        
+       
+        function logout() {
+        // Reload the page
+        location.reload();
+    }
         $('#btnRegisterSwap').on('click', function(){
             console.log('Register Swap Clicked');
             $('#divLogin').slideToggle(function(){
@@ -546,15 +559,14 @@
         // Execute when page loads
         window.onload = displayDate;
 
-        function toggleDarkMode() {
-            const body = document.body;
-
-            if (body.classList.contains("light-mode")) {
-                body.classList.replace("light-mode", "dark-mode");
-            } else {
-                body.classList.replace("dark-mode", "light-mode");
-            }
-        }
+        function toggleLightDarkMode() {
+        // Toggle light/dark mode for specific elements within the dashboard
+        var elementsToChange = document.querySelectorAll('#divDashboard .light-mode-bg, #divDashboard .dark-mode-bg');
+        elementsToChange.forEach(function(element) {
+            element.classList.toggle('light-mode-bg');
+            element.classList.toggle('dark-mode-bg');
+        });
+    }
 
         window.addEventListener('load', () => {
             const toggleButton = document.getElementById('btnModeToggle');
