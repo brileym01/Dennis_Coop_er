@@ -278,14 +278,9 @@
                                 text: result.Error
                             })
                         } else {
-                            
-                                $('#divLogin').slideToggle(function(){
-                                    $('#divDashboard').slideToggle();
-                                })
-                            
                             sessionStorage.setItem('TimeClockID',result.SessionID);
                             $('#divLogin').slideToggle(function(){
-                                $('#divView').slideToggle();
+                                $('#divDashboard').slideToggle();
                             })
                         }
                     })
