@@ -59,18 +59,6 @@
             border: none;
             cursor: pointer;
         }
-
-        .light-mode .card {
-        /* Light mode styles */
-        background-color: #fff;
-        color: #000;
-    }
-
-    .dark-mode .card {
-        /* Dark mode styles */
-        background-color: #333;
-        color: #fff;
-    }
         /* Define the switch */
         .switch {
         position: relative;
@@ -197,7 +185,7 @@
         <!-- Dashboard div -->
         <div id="divDashboard" class="col-12 dashboard-background light-mode" style="display:none">            
             <div class="card col-12">
-                <div class="card-body col-12 mb-0 .light-mode-bg .dark-mode-bg">
+                <div class="card-body col-12 mb-0">
                     <h2 class="col-12 text-center font fs-2"><span class="fw-bold">Dennis</span><span class="fw-light">Cooper</span></h2>
                     <h6 style="float:left "id="currentDate"></h6>
                     <button type="button" id="btnModeToggle" class="btn btn-outline-success btn-sm"  style="float:right" onclick="logout()" >Log Out</button>
@@ -206,17 +194,17 @@
                 </div>
             </div>
             <!-- First row -->
-            <div class="container .light-mode-bg .dark-mode-bg">
-                <div class="row col-12 mt-5 margin-right-5 .light-mode-bg .dark-mode-bg">
+            <div class="container">
+                <div class="row col-12 mt-5 margin-right-5">
                     <!-- start of door card -->
-                    <div class="col-lg-3 .light-mode-bg .dark-mode-bg">
-                        <div class="card .light-mode-bg .dark-mode-bg">
-                            <div class="card-body text-center .light-mode-bg .dark-mode-bg">
+                    <div class="col-lg-3">
+                        <div class="card">
+                            <div class="card-body text-center">
                                 <h6>Doors</h6>
                                 <!-- Rounded switch -->
-                                <label class="switch .light-mode-bg .dark-mode-bg">
+                                <label class="switch">
                                     <input type="checkbox" id="mySwitch"> <!-- Hidden checkbox -->
-                                    <span class="slider round .light-mode-bg .dark-mode-bg"></span> <!-- The slider design -->
+                                    <span class="slider round"></span> <!-- The slider design -->
                                 </label>
                             </div>
                         </div>
@@ -224,9 +212,9 @@
                     <!-- end of door card -->
 
                     <!-- start of electric fence card -->
-                    <div class="col-lg-3 .light-mode-bg .dark-mode-bg">
-                        <div class="card .light-mode-bg .dark-mode-bg">
-                            <div class="card-body text-center .light-mode-bg .dark-mode-bg">
+                    <div class="col-lg-3">
+                        <div class="card">
+                            <div class="card-body text-center">
                                 <h6>Electric Fence</h6>
                                 <!-- Rounded switch -->
                                 <label class="switch">
@@ -558,15 +546,6 @@
         }
         // Execute when page loads
         window.onload = displayDate;
-
-        function toggleLightDarkMode() {
-        // Toggle light/dark mode for specific elements within the dashboard
-        var elementsToChange = document.querySelectorAll('#divDashboard .light-mode-bg, #divDashboard .dark-mode-bg');
-        elementsToChange.forEach(function(element) {
-            element.classList.toggle('light-mode-bg');
-            element.classList.toggle('dark-mode-bg');
-        });
-    }
 
         window.addEventListener('load', () => {
             const toggleButton = document.getElementById('btnModeToggle');
